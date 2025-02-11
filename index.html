@@ -406,50 +406,8 @@
 
       </div>
     </section>
-	  
-<!-- Order Section -->
-    <section id="order">
-      <h2>Order Your Portrait</h2>
-      <p style="text-align: center;">Upload an image and order a custom portrait.</p>
-      <form id="orderForm">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" required>
-
-        <label for="email">Email Address</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="size">Select Portrait Size</label>
-        <select id="size" name="size">
-          <option value=""></option>
-          <option value="">7*7cm</option>
-          <option value="">10*10cm</option>
-          <option value="">10*12cm</option>
-          <option value="">12*16cm</option>
-          <option value="">16*16cm</option>
-          <option value="">16*20cm</option>
-          <option value="">20*20cm</option>
-          <option value="A4">A4 (21.0 x 29.7 cm)</option>
-          <option value="A3">A3 (29.7 x 42 cm)</option>
-          <option value="A2">A2 (42 x 59.4 cm)</option>
-          <option value="A1">A1 (59 x 84 cm)</option>
-        </select>
-
-        <label for="message">Additional Instructions</label>
-        <textarea id="message" name="message" rows="4"></textarea>
-
-        <!-- Drag & Drop Upload Section -->
-        <div id="uploadContainer">
-          <label>Upload Your Image</label>
-          <div id="dropZone">Drag & Drop or Click to Upload</div>
-          <input type="file" id="fileInput" name="file" accept="image/*" style="display: none;">
-          <p id="fileName"></p>
-        </div>
-
-        <button type="submit">Place Order</button>
-      </form>
-    </section>
-	  
-     <!-- Script for drag and drop functionality -->
+	 
+	  <!-- Script for drag and drop functionality -->
     <script>
       const dropZone = document.getElementById("dropZone");
       const fileInput = document.getElementById("fileInput");
