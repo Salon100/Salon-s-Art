@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
   <title>Salon’s Art</title>
   <link rel="icon" href="art.jpg" type="image/x-icon">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -27,6 +27,8 @@
       background-color: var(--color-light);
       color: #333;
       padding-top: 80px;
+      padding-left: 10px;
+      padding-right: 10px;
     }
 
     .navbar {
@@ -123,7 +125,7 @@
 
     .gallery-preview {
       background-color: var(--color-soft);
-      padding: 60px 40px;
+      padding: 60px 10px;
       text-align: center;
     }
 
@@ -197,33 +199,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .floating-stars {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .floating-stars span {
-      position: absolute;
-      display: block;
-      width: 5px;
-      height: 5px;
-      background: white;
-      animation: float 10s linear infinite;
-      border-radius: 50%;
-      opacity: 0.5;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(-100vh); }
-    }
-
     footer {
       text-align: center;
       padding: 20px;
@@ -240,9 +215,8 @@
       text-decoration: underline;
     }
 
-    /* Lightbox CSS */
     .lightbox {
-      display: none; /* Hidden by default */
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
@@ -251,15 +225,72 @@
       background-color: rgba(0, 0, 0, 0.8);
       justify-content: center;
       align-items: center;
-      z-index: 1001; /* Ensures it's above all other content */
+      z-index: 1001;
     }
 
     .lightbox img {
-      max-width: 90%;
-      max-height: 90%;
+      width: 90%;
+      max-width: 500px;
+      height: auto;
       object-fit: contain;
       border-radius: 10px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px 20px;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .nav-links a {
+        padding: 8px 0;
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero button {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .gallery-grid img {
+        width: 100%;
+        height: auto;
+      }
+
+      video {
+        width: 100% !important;
+        height: auto !important;
+      }
+
+      .quote-widget {
+        max-width: 90%;
+        font-size: 12px;
+        padding: 12px;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .testimonial-box {
+        margin: 30px 10px;
+        padding: 20px;
+      }
     }
   </style>
 </head>
@@ -294,17 +325,17 @@
       <img src="three.jpg" alt="Art 3" onclick="openLightbox(this.src)" />
     </div>
 
-    <section style="background-color: var(--color-light); padding: 50px 30px; text-align: center; margin-top: 60px;">
+    <section style="background-color: var(--color-light); padding: 50px 10px; text-align: center; margin-top: 60px;">
       <h2 style="font-size: 30px; margin-bottom: 20px;">🎥 Behind the Scenes</h2>
       <p style="max-width: 700px; margin: 0 auto; font-size: 17px; color: #444;">
         Ever wondered how a piece of art is born? Here's a sneak peek into how I turn blank canvases into stories — from rough sketches to final strokes.
       </p>
-      <video src="process.MP4" controls style="margin-top:20px; width:auto; height:350px; border-radius: 10px;"></video>
+      <video src="process.mp4" controls style="margin-top:20px; border-radius: 10px; height:350px; width:auto;"></video>
     </section>
 
-    <section style="background-color: var(--color-soft); padding: 50px 30px; text-align: center;">
+    <section style="background-color: var(--color-soft); padding: 50px 10px; text-align: center;">
       <h2 style="font-size: 30px; margin-bottom: 25px;">🛠️ Tools I Use</h2>
-      <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+      <div class="tools-container" style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
         <div style="background-color: white; padding: 20px; border-radius: 12px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
           <h4>Pencil & Sketchbook</h4>
           <p style="font-size: 14px; color: #666;">Where every idea begins</p>
@@ -333,7 +364,7 @@
     <span>– A Happy Customer</span>
   </div>
 
-  <section style="text-align: center; margin: 40px 20px;">
+  <section style="text-align: center; margin: 40px 10px;">
     <h3 style="margin-bottom: 10px;">🎨 Random Art Fact</h3>
     <p id="randomFact" style="font-size: 16px; color: #444;"></p>
   </section>
