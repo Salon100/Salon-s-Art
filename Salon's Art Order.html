@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order - Salon’s Art</title>
+  <link rel="icon" href="art.jpg" type="image/x-icon">
+  <style>
+    /* Your existing styles (unchanged) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --color-light: #f0f3fa;
+      --color-soft: #d5deef;
+      --color-muted: #b1c9ef;
+      --color-medium: #8aaee0;
+      --color-strong: #628ecb;
+      --color-deep: #395886;
+    }
+
+    body {
+      background-color: var(--color-light);
+      color: #333;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--color-deep);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-container .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-soft);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      text-decoration: none;
+      background-color: var(--color-medium);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-button:hover {
+      background-color: var(--color-strong);
+    }
+
+    .order-section {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: var(--color-soft);
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(137, 170, 224, 0.2);
+    }
+
+    .order-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--color-deep);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea, select, input[type="date"] {
+      padding: 12px;
+      border: 1px solid var(--color-muted);
+      border-radius: 8px;
+      background-color: var(--color-light);
+      font-size: 1em;
+      color: var(--color-deep);
+    }
+
+    input:focus, textarea:focus, select:focus, input[type="date"]:focus {
+      border-color: var(--color-strong);
+      outline: none;
+      box-shadow: 0 0 8px var(--color-medium);
+    }
+
+    button {
+      background-color: var(--color-strong);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--color-deep);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--color-deep);
+      color: white;
+    }
+
+    footer a {
+      color: var(--color-medium);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .file-upload {
+      position: relative;
+      background-color: var(--color-muted);
+      padding: 30px;
+      text-align: center;
+      border-radius: 8px;
+      border: 2px dashed var(--color-deep);
+    }
+
+    @media (max-width: 600px) {
+      .order-section {
+        margin: 20px;
+        padding: 20px;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .navbar {
+        padding: 15px 20px;
+      }
+
+      .logo-container .logo-text {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="Salon's Art.html" class="logo-container" style="text-decoration: none; color: white;">
+      <img src="art.jpg" alt="Salon Logo" />
+      <div class="logo-text">Salon’s Art</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="Salon's Art.html">Home</a></li>
+      <li><a href="Salon's Art Gallery.html">Gallery</a></li>
+      <li><a href="Salon's Art Order.html">Order</a></li>
+      <li><a href="Salon's Art About.html">About</a></li>
+      <li><a href="Salon's Art Contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+   <!-- Back Button -->
+   <a href="Salon's Art.html" class="back-button">← Back</a>
+
+  <div class="order-section">
+    <h2>Order Your Custom Art</h2>
+    <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="c94689ee-51de-4e60-be05-1d184ac5661a">
+
+      <input type="text" id="name" name="name" placeholder="Your Name" required>
+      <input type="Contact" name="Contact" placeholder="Your Number" required>
+
+      <select id="artType" name="artType" required>
+        <option value="" disabled selected>Select Art Type</option>
+        <option value="Painting">Painting</option>
+        <option value="Sketch">Sketch</option>
+      </select>
+
+      <select id="canvasSize" name="canvasSize" required>
+        <option value="" disabled selected>Select Canvas Size</option>
+        <option value="10x10">10x10</option>
+        <option value="12x16">12x16</option>
+        <option value="16x20">16x20</option>
+        <option value="20x20">20x20</option>
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
+        <option value="A2">A2</option>
+        <option value="A1">A1</option>
+      </select>
+
+      <select id="personCount" name="personCount" required disabled>
+        <option value="" disabled selected>Select Number of People</option>
+      </select>
+
+      <div><strong>Total Price:</strong> <span id="price">N/A</span></div>
+
+      <textarea id="message" name="message" rows="4" placeholder="Describe your request..." required></textarea>
+
+      <input type="text" id="deliveryPlace" name="deliveryPlace" placeholder="Delivery Address" required>
+      <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+      <!-- Hidden input to send the calculated price -->
+      <input type="hidden" id="calculatedPrice" name="calculatedPrice">
+
+      <!-- WhatsApp Section -->
+      <div class="file-upload" style="cursor: default;">
+        <p><strong>To send your image:</strong></p>
+        <p>Send your reference image via WhatsApp:</p>
+        <a href="https://wa.me/9779742590718?text=Hello%2C%20I%20would%20like%20to%20place%20an%20art%20order.%20Here%20is%20my%20reference%20image%3A" 
+           target="_blank" 
+           style="display: inline-block; margin-top: 10px; padding: 10px 20px; background-color: var(--color-deep); color: white; border-radius: 8px; text-decoration: none;">
+          📩 Send on WhatsApp
+        </a>
+      </div>
+
+      <button type="submit">Place Order</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Salon’s Art. All rights reserved.</p>
+    <p>Follow us on 
+      <a href="https://www.instagram.com/salons_art/">Instagram</a> |
+      <a href="https://wa.me/9779742590718" target="_blank">+977 9742590718</a>
+    </p>
+  </footer>
+
+  <script>
+    const paintingPrices = {
+      "10x10": 800,
+      "12x16": 1500,
+      "16x20": 2000,
+      "20x20": 2500,
+      A4: 3200,
+      A3: 5000,
+      A2: 10000,
+      A1: 20000
+    };
+
+    const sketchPrices = {
+      A4: 2000,
+      A3: 4000,
+      A2: 8000
+    };
+
+    const personExtraPrices = {
+      "10x10": 600,
+      "12x16": 800,
+      "16x20": 1000,
+      "20x20": 1800,
+      A4: 2000,
+      A3: 3000,
+      A2: 5500,
+      A1: 8000
+    };
+
+    const canvasSelect = document.getElementById("canvasSize");
+    const personSelect = document.getElementById("personCount");
+    const priceDisplay = document.getElementById("price");
+    const artTypeSelect = document.getElementById("artType");
+    const calculatedPriceField = document.getElementById("calculatedPrice");
+
+    artTypeSelect.addEventListener("change", () => {
+      canvasSelect.value = "";
+      priceDisplay.textContent = "N/A";
+      personSelect.disabled = true;
+      personSelect.innerHTML = '<option disabled selected>Select Number of People</option>';
+
+      const artType = artTypeSelect.value;
+      const options = canvasSelect.querySelectorAll("option");
+      options.forEach(option => {
+        option.disabled = artType === "Sketch" && !["A4", "A3", "A2"].includes(option.value);
+      });
+    });
+
+    canvasSelect.addEventListener("change", () => {
+      const size = canvasSelect.value;
+      personSelect.disabled = false;
+      personSelect.innerHTML = '<option disabled selected>Select Number of People</option>';
+      for (let i = 1; i <= 15; i++) {
+        const option = document.createElement("option");
+        option.value = i;
+        option.textContent = `${i} ${i === 1 ? "person" : "people"}`;
+        personSelect.appendChild(option);
+      }
+      priceDisplay.textContent = "Select number of people";
+    });
+
+    personSelect.addEventListener("change", () => {
+      const size = canvasSelect.value;
+      const artType = artTypeSelect.value;
+      const basePrice = artType === "Painting" ? paintingPrices[size] : sketchPrices[size];
+      const extraPersonPrice = personExtraPrices[size];
+      const people = parseInt(personSelect.value);
+      const total = basePrice + (people - 1) * extraPersonPrice;
+      priceDisplay.textContent = `Rs. ${total}`;
+
+      // Update the hidden field to send the price
+      calculatedPriceField.value = `Rs. ${total}`;
+    });
+  </script>
+</body>
+</html>

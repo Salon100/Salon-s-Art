@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salon’s Art</title>
+  <link rel="icon" href="art.jpg" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --color-light: #f0f3fa;
+      --color-soft: #d5deef;
+      --color-muted: #b1c9ef;
+      --color-medium: #8aaee0;
+      --color-strong: #628ecb;
+      --color-deep: #395886;
+    }
+
+    body {
+      background-color: var(--color-light);
+      color: #333;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--color-deep);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-container .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-soft);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('arts.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: var(--color-strong);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: var(--color-medium);
+      transform: scale(1.05);
+    }
+
+    .typing-text {
+      font-size: 22px;
+      margin-top: 15px;
+      height: 30px;
+      color: #e0e0e0;
+      font-style: italic;
+    }
+
+    .gallery-preview {
+      background-color: var(--color-soft);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .gallery-preview h2 {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+
+    .gallery-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .gallery-grid img {
+      width: 300px;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+      cursor: pointer;
+      border: 3px solid var(--color-muted);
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      border-color: var(--color-strong);
+    }
+
+    .testimonial-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      margin: 60px auto;
+      max-width: 500px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+
+    .testimonial-box p {
+      font-style: italic;
+      font-size: 17px;
+      color: #333;
+    }
+
+    .testimonial-box span {
+      display: block;
+      margin-top: 10px;
+      color: var(--color-deep);
+      font-weight: bold;
+    }
+
+    .quote-widget {
+      position: fixed;
+      bottom: 15px;
+      right: 20px;
+      background: var(--color-deep);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      max-width: 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 1001;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .floating-stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .floating-stars span {
+      position: absolute;
+      display: block;
+      width: 5px;
+      height: 5px;
+      background: white;
+      animation: float 10s linear infinite;
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-100vh); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--color-deep);
+      color: white;
+    }
+
+    footer a {
+      color: var(--color-medium);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Lightbox CSS */
+    .lightbox {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1001; /* Ensures it's above all other content */
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="Salon's Art.html" class="logo-container">
+        <img src="art.jpg" alt="Salon Logo" />
+        <div class="logo-text">Salon’s Art</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="Salon's Art.html">Home</a></li>
+        <li><a href="Salon's Art Gallery.html">Gallery</a></li>
+        <li><a href="Salon's Art Order.html">Order</a></li>
+        <li><a href="Salon's Art About.html">About</a></li>
+        <li><a href="Salon's Art Contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hero">
+      <h1>Welcome to Salon’s Art</h1>
+      <p>Explore creativity through colors and canvas</p>
+      <button onclick="exploreGallery()"><a href="Salon's Art Gallery.html" style="color: white; text-decoration: none;">Explore Gallery</a></button>
+      <div class="typing-text" id="typing"></div>
+    </div>
+  </header>
+
+  <section class="gallery-preview">
+    <h2>Featured Artworks</h2>
+    <div class="gallery-grid">
+      <img src="one.jpg" alt="Art 1" onclick="openLightbox(this.src)" />
+      <img src="two.jpg" alt="Art 2" onclick="openLightbox(this.src)" />
+      <img src="three.jpg" alt="Art 3" onclick="openLightbox(this.src)" />
+    </div>
+
+    <section style="background-color: var(--color-light); padding: 50px 30px; text-align: center; margin-top: 60px;">
+      <h2 style="font-size: 30px; margin-bottom: 20px;">🎥 Behind the Scenes</h2>
+      <p style="max-width: 700px; margin: 0 auto; font-size: 17px; color: #444;">
+        Ever wondered how a piece of art is born? Here's a sneak peek into how I turn blank canvases into stories — from rough sketches to final strokes.
+      </p>
+      <video src="process.MP4" controls style="margin-top:20px; width:auto; height:350px; border-radius: 10px;"></video>
+    </section>
+
+    <section style="background-color: var(--color-soft); padding: 50px 30px; text-align: center;">
+      <h2 style="font-size: 30px; margin-bottom: 25px;">🛠️ Tools I Use</h2>
+      <div style="display: flex; justify-content: center; gap: 25px; flex-wrap: wrap;">
+        <div style="background-color: white; padding: 20px; border-radius: 12px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+          <h4>Pencil & Sketchbook</h4>
+          <p style="font-size: 14px; color: #666;">Where every idea begins</p>
+        </div>
+        <div style="background-color: white; padding: 20px; border-radius: 12px; width: 200px; box-shadow: 0 4px 8px rgba(0,0,0,0.05);">
+          <h4>Paint & Brushes</h4>
+          <p style="font-size: 14px; color: #666;">Traditional media magic</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="background-color: var(--color-medium); color: white; padding: 40px 20px; text-align: center;">
+      <h2 style="font-size: 28px; margin-bottom: 15px;">💡 Did You Know?</h2>
+      <p style="font-size: 18px; max-width: 700px; margin: 0 auto;">
+        I created my first art piece using just a pencil and notebook paper when I was a kid. Now, that sketch is still pinned to my wall!
+      </p>
+    </section>
+  </section>
+
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="EYE.jpg" alt="Full View" />
+  </div>
+
+  <div class="testimonial-box" id="testimonial">
+    <p>"This is the most heart-touching art I’ve ever seen!"</p>
+    <span>– A Happy Customer</span>
+  </div>
+
+  <section style="text-align: center; margin: 40px 20px;">
+    <h3 style="margin-bottom: 10px;">🎨 Random Art Fact</h3>
+    <p id="randomFact" style="font-size: 16px; color: #444;"></p>
+  </section>
+
+  <div class="quote-widget" id="quoteWidget">"Every artist was first an amateur." – Emerson</div>
+
+  <footer>
+    <p>© 2025 Salon’s Art. All rights reserved.</p>
+    <p>Follow us on 
+      <a href="https://www.instagram.com/salons_art/">Instagram</a> |
+      <a href="https://wa.me/9779742590718" target="_blank">+977 9742590718</a>
+    </p>
+  </footer>
+
+  <script>
+    function openLightbox(src) {
+      document.getElementById('lightbox').style.display = 'flex';
+      document.getElementById('lightbox-img').src = src;
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+    }
+
+    const facts = [
+      "The Mona Lisa is thought to have been painted in 1503.",
+      "Picasso’s full name was Pablo Diego José Francisco Juan Nepomuceno Crispín Crispín Picasso.",
+      "There are no famous art paintings in China, as art is still very strictly controlled."
+    ];
+
+    document.getElementById('randomFact').innerText = facts[Math.floor(Math.random() * facts.length)];
+  </script>
+</body>
+</html>

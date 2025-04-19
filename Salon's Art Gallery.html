@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salon’s Art - Gallery</title>
+  <link rel="icon" href="art.jpg" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --color-light: #f0f3fa;
+      --color-soft: #d5deef;
+      --color-muted: #b1c9ef;
+      --color-medium: #8aaee0;
+      --color-strong: #628ecb;
+      --color-deep: #395886;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background-color: var(--color-light);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    #wrapper {
+      flex: 1;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--color-deep);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-container .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-soft);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      text-decoration: none;
+      background-color: var(--color-medium);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-button:hover {
+      background-color: var(--color-strong);
+    }
+
+    .gallery-section {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .gallery-section h2 {
+      font-size: 2.5rem;
+      color: var(--color-strong);
+      margin-bottom: 30px;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .gallery-item {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: var(--color-soft);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.03);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1001;
+      visibility: hidden;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .lightbox.active {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 85%;
+      border-radius: 10px;
+      border: 5px solid var(--color-medium);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    footer {
+      width: 100%;
+      padding: 20px;
+      background-color: var(--color-deep);
+      color: white;
+      text-align: center;
+    }
+
+    footer a {
+      color: var(--color-medium);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="wrapper">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <a href="Salon's Art.html" class="logo-container" style="text-decoration: none; color: white;">
+        <img src="art.jpg" alt="Salon Logo" />
+        <div class="logo-text">Salon’s Art</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="Salon's Art.html">Home</a></li>
+        <li><a href="Salon's Art Gallery.html">Gallery</a></li>
+        <li><a href="Salon's Art Order.html">Order</a></li>
+        <li><a href="Salon's Art About.html">About</a></li>
+        <li><a href="Salon's Art Contact.html">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Back Button -->
+    <a href="Salon's Art.html" class="back-button">← Back</a>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <h2>Salon’s Art Gallery</h2>
+
+      <!-- Paintings Section -->
+      <div style="margin-bottom: 60px;">
+        <h3 style="color: var(--color-deep); font-size: 24px; margin-bottom: 20px;">🎨 Paintings</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img src="four.jpg" alt="Painting 1"></div>
+          <div class="gallery-item"><img src="five.jpg" alt="Painting 2"></div>
+          <div class="gallery-item"><img src="six.jpg" alt="Painting 3"></div>
+        </div>
+        <a href="Salon's Art Painting.html" style="margin-top: 20px; padding: 10px 20px; background-color: var(--color-strong); color: white; border: none; border-radius: 6px; cursor: pointer; display: inline-block;">View More Paintings</a>
+      </div>
+
+      <!-- Pencil Sketches Section -->
+      <div style="margin-bottom: 60px;">
+        <h3 style="color: var(--color-deep); font-size: 24px; margin-bottom: 20px;">✏️ Pencil Sketches</h3>
+        <div class="gallery-grid">
+          <div class="gallery-item"><img src="S1.jpg" alt="Sketch 1"></div>
+          <div class="gallery-item"><img src="S2.jpg" alt="Sketch 2"></div>
+          <div class="gallery-item"><img src="S3.jpg" alt="Sketch 3"></div>
+        </div>
+        <a href="Salon's Art Sketch.html" style="margin-top: 20px; padding: 10px 20px; background-color: var(--color-strong); color: white; border: none; border-radius: 6px; cursor: pointer; display: inline-block;">View More Sketches</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <img src="" alt="Enlarged Art" id="lightbox-img" />
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Salon’s Art. All rights reserved.</p>
+    <p>Follow us on 
+      <a href="https://www.instagram.com/salons_art/">Instagram</a> |
+      <a href="https://wa.me/9779742590718" target="_blank">+977 9742590718</a>
+    </p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+
+    document.querySelectorAll(".gallery-item img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightbox.classList.add("active");
+        lightboxImg.src = img.src;
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      lightboxImg.src = "";
+    }
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeLightbox();
+    });
+
+    lightbox.addEventListener("click", function(e) {
+      if (e.target !== lightboxImg && e.target !== document.querySelector(".lightbox-close")) {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+</html>

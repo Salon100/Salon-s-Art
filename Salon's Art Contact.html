@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salon’s Art</title>
+  <link rel="icon" href="art.jpg" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --color-light: #f0f3fa;
+      --color-soft: #d5deef;
+      --color-muted: #b1c9ef;
+      --color-medium: #8aaee0;
+      --color-strong: #628ecb;
+      --color-deep: #395886;
+    }
+
+    body {
+      background-color: var(--color-light);
+      color: #333;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--color-deep);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-container .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-soft);
+    }
+
+    .back-button {
+        position: absolute;
+        top: 90px;
+        left: 20px;
+        text-decoration: none;
+        background-color: var(--color-medium);
+        color: white;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s ease;
+        z-index: 999;
+      }
+  
+      .back-button:hover {
+        background-color: var(--color-strong);
+      }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('arts.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: var(--color-strong);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: var(--color-medium);
+      transform: scale(1.05);
+    }
+
+    /* Contact Us Styling */
+    #contact-us {
+      background-color: var(--color-light);
+      padding: 50px 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--color-soft);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--color-deep);
+      font-size: 28px;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 16px;
+      color: var(--color-deep);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--color-muted);
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--color-medium);
+      outline: none;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .submit-btn {
+      background-color: var(--color-strong);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--color-deep);
+    }
+
+    .response-message {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 16px;
+      color: var(--color-deep);
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        background-color: var(--color-deep);
+        color: white;
+      }
+  
+      footer a {
+        color: var(--color-medium);
+        text-decoration: none;
+      }
+  
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+  </style>
+    </head>
+    <body>
+    <header>
+        <nav class="navbar">
+          <a href="Salon's Art.html" class="logo-container" style="text-decoration: none; color: white;">
+            <img src="art.jpg" alt="Salon Logo" />
+            <div class="logo-text">Salon’s Art</div>
+          </a>
+        <ul class="nav-links">
+            <li><a href="Salon's Art.html">Home</a></li>
+            <li><a href="Salon's Art Gallery.html">Gallery</a></li>
+            <li><a href="Salon's Art Order.html">Order</a></li>
+            <li><a href="Salon's Art About.html">About</a></li>
+            <li><a href="Salon's Art Contact.html">Contact</a></li>
+        </ul>
+        </nav>
+    </header>
+
+     <!-- Back Button -->
+   <a href="Salon's Art.html" class="back-button">← Back</a>
+
+    <section id="contact-us" class="contact-us-section">
+        <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="c94689ee-51de-4e60-be05-1d184ac5661a">
+            <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+        <div id="response-message" class="response-message"></div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Salon’s Art. All rights reserved.</p>
+        <p>Follow us on 
+        <a href="https://www.instagram.com/salons_art/">Instagram</a> |
+        <a href="https://wa.me/9779742590718" target="_blank">+977 9742590718</a>
+        </p>
+    </footer>
+
+    <script>
+        function exploreGallery() {
+            window.location.href = "Salon's Art Gallery.html";
+          }
+
+        document.getElementById("contact-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const message = document.getElementById("message").value;
+
+        if (name && email && message) {
+            document.getElementById("response-message").textContent = "Thank you for reaching out, we'll get back to you soon!";
+            document.getElementById("response-message").style.color = "#8aaee0";
+            document.getElementById("contact-form").reset();
+        } else {
+            document.getElementById("response-message").textContent = "Please fill out all fields.";
+            document.getElementById("response-message").style.color = "#ff0000";
+        }
+        });
+    </script>
+    </body>
+</html>

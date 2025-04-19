@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salon’s Art - Paintings</title>
+  <link rel="icon" href="art.jpg" type="image/x-icon">
+  <style>
+    /* [Existing styles above] */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    :root {
+      --color-light: #f0f3fa;
+      --color-soft: #d5deef;
+      --color-muted: #b1c9ef;
+      --color-medium: #8aaee0;
+      --color-strong: #628ecb;
+      --color-deep: #395886;
+    }
+
+    html, body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--color-light);
+      color: #333;
+      padding-top: 80px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: var(--color-deep);
+      color: white;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 40px;
+      width: 40px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .logo-container .logo-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--color-soft);
+    }
+
+    .back-button {
+      position: absolute;
+      top: 90px;
+      left: 20px;
+      text-decoration: none;
+      background-color: var(--color-medium);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+      z-index: 999;
+    }
+
+    .back-button:hover {
+      background-color: var(--color-strong);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('arts.jpg') center/cover no-repeat;
+      color: white;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: var(--color-strong);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .hero button:hover {
+      background-color: var(--color-medium);
+      transform: scale(1.05);
+    }
+
+    .painting-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+      flex-grow: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      color: #39588B;
+    }
+
+    .painting-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding-bottom: 20px;
+    }
+
+    .painting-grid img {
+      width: 200px;
+      height: auto;
+      max-width: 100%;
+      border-radius: 12px;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .painting-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .slideshow-section {
+      padding: 60px 20px;
+      background-color: var(--color-soft);
+    }
+
+    .slideshow {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .slideshow img {
+      width: 200px;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      opacity: 0.6;
+      transform: scale(0.95);
+      transition: opacity 0.5s ease, transform 1s ease;
+      cursor: pointer;
+    }
+
+    .slideshow img.active {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .slideshow img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-section {
+      padding: 60px 20px;
+      background-color: var(--color-light);
+      text-align: center;
+    }
+
+    .video-container {
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-container video {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: var(--color-deep);
+      color: white;
+      margin-top: auto;
+    }
+
+    footer a {
+      color: var(--color-medium);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <a href="Salon's Art.html" class="logo-container" style="text-decoration: none; color: white;">
+        <img src="art.jpg" alt="Salon Logo" />
+        <div class="logo-text">Salon’s Art</div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="Salon's Art.html">Home</a></li>
+        <li><a href="Salon's Art Gallery.html">Gallery</a></li>
+        <li><a href="Salon's Art Order.html">Order</a></li>
+        <li><a href="Salon's Art About.html">About</a></li>
+        <li><a href="Salon's Art Contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <a href="Salon's Art Gallery.html" class="back-button">← Back</a>
+
+  <section class="painting-section">
+    <h2 class="section-title">🎨 Paintings</h2>
+    <div class="painting-grid">
+      <img src="seven.jpg" alt="Painting 1">
+      <img src="eight.jpg" alt="Painting 2">
+      <img src="nine.jpg" alt="Painting 3">
+      <img src="ten.jpg" alt="Painting 4">
+      <img src="eleven.jpg" alt="Painting 5">
+      <img src="twelve.jpg" alt="Painting 6">
+      <img src="thirteen.jpg" alt="Painting 7">
+      <img src="fourteen.jpg" alt="Painting 8">
+      <img src="fifteen.jpg" alt="Painting 9">
+    </div>
+  </section>
+
+  <section class="slideshow-section">
+    <h2 class="section-title"></h2>
+    <div class="slideshow">
+      <img src="sixteen.jpg" class="slide" alt="Slide 1">
+      <img src="seventeen.jpg" class="slide" alt="Slide 2">
+      <img src="eighteen.jpg" class="slide" alt="Slide 3">
+      <img src="nineteen.jpg" class="slide" alt="Slide 4">
+      <img src="twenty.jpg" class="slide" alt="Slide 5">
+      <img src="twenty-one.jpg" class="slide" alt="Slide 6">
+      <img src="twenty-two.jpg" class="slide" alt="Slide 7">
+    </div>
+  </section>
+
+  <!-- 🎥 Video Section -->
+  <section class="video-section">
+    <h2 class="section-title"></h2>
+    <div class="video-container">
+      <video controls>
+        <source src="video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Full view" id="lightbox-img">
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.painting-grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+      lightboxImg.src = '';
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === "Escape") {
+        lightbox.style.display = 'none';
+        lightboxImg.src = '';
+      }
+    });
+
+    // Slideshow functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slideshow img');
+    const totalSlides = slides.length;
+
+    function showSlide() {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[currentSlide].classList.add('active');
+      currentSlide = (currentSlide + 1) % totalSlides;
+    }
+
+    setInterval(showSlide, 3000);
+    showSlide();
+
+    // Click to fullscreen for slides
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => {
+        lightboxImg.src = slide.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2025 Salon’s Art. All rights reserved.</p>
+    <p>Follow us on 
+      <a href="https://www.instagram.com/salons_art/">Instagram</a> |
+      <a href="https://wa.me/9779742590718" target="_blank">+977 9742590718</a>
+    </p>
+  </footer>
+</body>
+</html>
